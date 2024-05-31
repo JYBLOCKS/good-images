@@ -30,10 +30,10 @@ variables and functions   using Camelcase             example: funtionExample
 
 ## Distribution of the project
 .  
-├── public                      # public files                                                                       
-├── src                         # files of project  
-└────── api                     # files fetching the API  
-│&nbsp;&nbsp;├── api-name.ts           # specific API Fetch  
+├── public&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# public files                                                                       
+├── src&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# files of project  
+└────── api&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# files fetching the API  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── api-name.ts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# specific API Fetch  
 │     └── index.ts              # general export  
 └────── components              # the general components are here  
 │     └──── component           # file component distribution  
