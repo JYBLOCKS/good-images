@@ -18,7 +18,9 @@ describe("SelectImage", () => {
   });
   it("should display a text", () => {
     render(<SelectImage id={undefined} />);
-    const textNoSelectAnyImage = screen.getByText(labels.NO_IMAGE_SELECTED);
+    const textNoSelectAnyImage = screen.getByText(labels.LEGEND);
     expect(textNoSelectAnyImage).toBeDefined();
+    const textChoosePicture = screen.getByText(labels.CHOOSE_PICTURE);
+    expect(textChoosePicture).toBeDefined();
   });
 });
