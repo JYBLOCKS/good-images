@@ -33,18 +33,18 @@ variables and functions   using Camelcase             example: funtionExample
 ├── public                      # public files                                                                       
 ├── src                         # files of project  
 └────── api                     # files fetching the API  
-│     ├── api-name.ts           # specific API Fetch  
-│     └── index.ts              # general export  
+│\\\\\├── api-name.ts           # specific API Fetch  
+│\\\\\└── index.ts              # general export  
 └────── components              # the general components are here  
-│     └──── component            # file component distribution  
-│         ├── index.tsx         # display and manage the component  
-│         ├── labels.ts         # set all constants of component  
-│         ├── data-cy.ts        # set all data-cy constants to unit testing the component  
-│         ├── component.test.ts # unit testing the entire component  
-│         └── component.css     # if the component has specific styled add this file  
+│\\\\\└──── component\\\\\\\\\\\# file component distribution  
+│\\\\\\\\\├── index.tsx         # display and manage the component  
+│\\\\\\\\\├── labels.ts         # set all constants of component  
+│\\\\\\\\\├── data-cy.ts        # set all data-cy constants to unit testing the component  
+│\\\\\\\\\├── component.test.ts # unit testing the entire component  
+│\\\\\\\\\└── component.css     # if the component has specific styled add this file  
 └────── redux                   # state manager file  
-│     ├── componentSlice.ts     # contained the reducer and slice manager state of component  
-│     └── store.ts              # export all reducers to applicacion  
+│\\\\\├── componentSlice.ts     # contained the reducer and slice manager state of component  
+│\\\\\└── store.ts              # export all reducers to applicacion  
 └────── App.tsx                 # App file to display every page of the applicacion  
 └────── main.tsx                # main configuration to send all pages from App.tsx to index.html  
 ├── .eslintrc.cjs               # default config of ESLINT  
