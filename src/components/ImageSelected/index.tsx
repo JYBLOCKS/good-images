@@ -35,7 +35,7 @@ export default function ImageSelected({
           <Button
             variant="contained"
             sx={{
-              width: 200,
+              width: { xs: "90%", md: "40%" },
               height: 56,
               backgroundColor: red[400],
               ":hover": {

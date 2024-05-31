@@ -51,13 +51,13 @@ export default function AddImageForm() {
         InputLabelProps={{ shrink: true }}
         variant="outlined"
         value={file}
-        sx={{ width: "40%" }}
+        sx={{ width: { xs: "90%", md: "40%" } }}
         onChange={onChange}
       />
       {newImage.length > 0 && (
         <Button
           variant="contained"
-          sx={{ width: 200, height: 56 }}
+          sx={{ width: { xs: "90%", md: "40%" }, height: 56 }}
           data-cy={dataCy.ADD_BUTTON}
           onClick={onClick}
         >
