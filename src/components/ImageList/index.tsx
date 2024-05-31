@@ -1,9 +1,9 @@
 import { Stack } from "@mui/material";
-import DisplayImage from "../DisplayImage";
+import ImageButton from "../ImageButton";
 import { ImageState } from "../../redux/imageSlice";
 import { grey } from "@mui/material/colors";
 
-function ListImages({ images }: { images: ImageState[] }) {
+export default function ImageList({ images }: { images: ImageState[] }) {
   return (
     <Stack
       direction={"column"}
@@ -14,10 +14,8 @@ function ListImages({ images }: { images: ImageState[] }) {
       height={"100%"}
     >
       {images.map((item) => (
-        <DisplayImage key={`image-${item.id}`} id={item.id} url={item.url} />
+        <ImageButton key={`image-${item.id}`} id={item.id} url={item.url} />
       ))}
     </Stack>
   );
 }
-
-export default ListImages;

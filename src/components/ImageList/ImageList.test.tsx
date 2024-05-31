@@ -6,7 +6,7 @@ vi.mock("react-redux", () => {
   return { useDispatch: vi.fn() };
 });
 
-describe("ListImages", () => {
+describe("ImageList", () => {
   it("should display 30 images", () => {
     render(
       <ListImages

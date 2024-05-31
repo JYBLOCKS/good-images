@@ -1,16 +1,24 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography, Stack } from "@mui/material";
 import { addNewImage } from "../../../redux/imageSlice";
 import { useState } from "react";
 import * as labels from "./labels";
 import * as dataCy from "./data-cy";
 import { useDispatch } from "react-redux";
+import { grey } from "@mui/material/colors";
 
 export default function AddImageForm() {
   const dispatch = useDispatch();
   const [newImage, setNewImage] = useState<string>("");
+  const [file, setFile] = useState<string>("");
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const reset = () => {
+    setFile("");
+    setNewImage("");
+  };
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
+    setFile(event.target.value as string);
     if (selectedFile) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -22,25 +30,40 @@ export default function AddImageForm() {
       reader.readAsDataURL(selectedFile);
     }
   };
+
+  const onClick = () => {
+    dispatch(addNewImage(newImage));
+    reset();
+  };
+
   return (
-    <>
+    <Stack
+      justifyContent={"center"}
+      alignItems={"center"}
+      width={"100%"}
+      spacing={2}
+    >
+      <Typography variant="h6" textAlign={"center"} color={grey[800]}>
+        {labels.ADD_TITLE}
+      </Typography>
       <TextField
         type="file"
-        label="Select Image"
         InputLabelProps={{ shrink: true }}
         variant="outlined"
-        onChange={handleFileChange}
+        value={file}
+        sx={{ width: "40%" }}
+        onChange={onChange}
       />
       {newImage.length > 0 && (
         <Button
           variant="contained"
           sx={{ width: 200, height: 56 }}
           data-cy={dataCy.ADD_BUTTON}
-          onClick={() => dispatch(addNewImage(newImage))}
+          onClick={onClick}
         >
           {labels.ADD_BUTTON}
         </Button>
       )}
-    </>
+    </Stack>
   );
 }

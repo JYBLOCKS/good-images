@@ -1,19 +1,32 @@
-import { Button, Typography, useMediaQuery } from "@mui/material";
+import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { clearSelectedImage } from "../../redux/imageSlice";
 import * as labels from "./labels";
 import * as dataCy from "./data-cy";
-import { red } from "@mui/material/colors";
+import { grey, red } from "@mui/material/colors";
+import "./ImageSelected.css";
 
-function SelectImage({ id, url }: { id: number | undefined; url?: string }) {
+export default function ImageSelected({
+  id,
+  url,
+}: {
+  id: number | undefined;
+  url?: string;
+}) {
   const dispatch = useDispatch();
   const isMobile = !useMediaQuery("(min-width:600px)");
 
   return (
     <>
       {url && id !== undefined ? (
-        <>
+        <Stack
+          spacing={2}
+          justifyContent={"center"}
+          alignItems={"center"}
+          width={"100%"}
+        >
           <img
+            className="imageSelected"
             src={url}
             alt={`image-${id}`}
             width={isMobile ? "70%" : 400}
@@ -34,14 +47,17 @@ function SelectImage({ id, url }: { id: number | undefined; url?: string }) {
           >
             {labels.CLEAR_BUTTON}
           </Button>
-        </>
+        </Stack>
       ) : (
-        <Typography variant="h6" textAlign={"center"}>
-          {labels.NO_IMAGE_SELECTED}
-        </Typography>
+        <Stack spacing={1}>
+          <Typography variant="h6" textAlign={"center"} color={grey[800]}>
+            {labels.LEGEND}
+          </Typography>
+          <Typography variant="h6" textAlign={"center"} color={grey[700]}>
+            {labels.CHOOSE_PICTURE}
+          </Typography>
+        </Stack>
       )}
     </>
   );
 }
-
-export default SelectImage;
