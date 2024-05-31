@@ -33,7 +33,7 @@ variables and functions   using Camelcase             example: funtionExample
 ├── public                      # public files                                                                       
 ├── src                         # files of project  
 └────── api                     # files fetching the API  
-│     ├── api-name.ts           # specific API Fetch  
+│&nbsp;&nbsp;├── api-name.ts           # specific API Fetch  
 │     └── index.ts              # general export  
 └────── components              # the general components are here  
 │     └──── component           # file component distribution  
