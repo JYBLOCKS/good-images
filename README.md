@@ -26,7 +26,7 @@ Add node_modules with all packages need to run the applicacion
 the name of components, variables, constants, functions must be describe why are using  
 Constants                 using UpperCase + Snakecase example: CONSTANTS_EXAMPLE  
 Components                using Pascalcase            example: ComponentExample  
-variables and functions   using Camelcase             example: funtionExample  
+variables and functions   using Camelcase             example: functionExample  
 
 ## Distribution of the project
 This project's codebase adheres to a clear and organized structure. Here's a breakdown of the key directories and files:
