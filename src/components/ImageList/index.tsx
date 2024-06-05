@@ -1,9 +1,11 @@
 import { Stack } from "@mui/material";
 import ImageButton from "../ImageButton";
-import { ImageState } from "../../redux/imageSlice";
 import { grey } from "@mui/material/colors";
+import useGetAllImages from "../../hooks/ImageHook";
 
-export default function ImageList({ images }: { images: ImageState[] }) {
+export default function ImageList() {
+  const {images} = useGetAllImages();
+  
   return (
     <Stack
       direction={"column"}

@@ -1,14 +1,22 @@
-export interface Picture {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-}
+import { Picture } from "../types";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export async function getAllPictures(): Promise<Picture[]> {
-  const response = await fetch("https://picsum.photos/v2/list?limit=30");
-  const data = response.json();
-  return data;
-}
+const BASEURL = "https://picsum.photos/v2/list";
+
+const ImageApi = createApi({
+  reducerPath: "imageAPI",
+  baseQuery: fetchBaseQuery({
+    baseUrl: BASEURL,
+  }),
+  tagTypes: ["Pictures"],
+  endpoints: (build) => ({
+    // The query accepts a number and returns a Post
+    getPictures: build.query<Picture[], { limit: number }>({
+      query: ({ limit = 30 }) => ({ url: `?limit=${limit}` }),
+    }),
+  }),
+});
+
+export const { useGetPicturesQuery } = ImageApi;
+
+export default ImageApi;

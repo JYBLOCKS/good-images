@@ -3,12 +3,7 @@ import { blueGrey } from "@mui/material/colors";
 import AddImageForm from "../forms/AddImage";
 import ImageSelected from "../ImageSelected";
 
-interface ImageManagerProps {
-  id?: number;
-  url?: string;
-}
-
-export default function ImageManager({ id, url }: ImageManagerProps) {
+export default function ImageManager() {
   return (
     <Stack
       direction={"column"}
@@ -19,7 +14,7 @@ export default function ImageManager({ id, url }: ImageManagerProps) {
       width={"100%"}
       height={"100%"}
     >
-      <ImageSelected id={id} url={url} />
+      <ImageSelected/>
       <AddImageForm />
     </Stack>
   );

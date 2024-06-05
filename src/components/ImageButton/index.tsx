@@ -1,7 +1,7 @@
 import { Button, Stack, useMediaQuery } from "@mui/material";
-import { useDispatch } from "react-redux";
 import { selectImage } from "../../redux/imageSlice";
 import "./ImageButton.css";
+import { useDispatch } from "react-redux";
 
 export default function ImageButton({ id, url }: { id: number; url: string }) {
   const dispatch = useDispatch();
