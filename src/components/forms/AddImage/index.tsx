@@ -3,8 +3,8 @@ import { addNewImage } from "../../../redux/imageSlice";
 import { useState } from "react";
 import * as labels from "./labels";
 import * as dataCy from "./data-cy";
-import { useDispatch } from "react-redux";
 import { grey } from "@mui/material/colors";
+import { useDispatch } from "react-redux";
 
 export default function AddImageForm() {
   const dispatch = useDispatch();

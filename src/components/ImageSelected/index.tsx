@@ -1,19 +1,15 @@
 import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { clearSelectedImage } from "../../redux/imageSlice";
+import { clearSelectedImage, selectedImage } from "../../redux/imageSlice";
 import * as labels from "./labels";
 import * as dataCy from "./data-cy";
 import { grey, red } from "@mui/material/colors";
 import "./ImageSelected.css";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
-export default function ImageSelected({
-  id,
-  url,
-}: {
-  id: number | undefined;
-  url?: string;
-}) {
+export default function ImageSelected() {
   const dispatch = useDispatch();
+  const { url, id } = useSelector((state: RootState) => selectedImage(state));
   const isMobile = !useMediaQuery("(min-width:600px)");
 
   return (
@@ -42,7 +38,7 @@ export default function ImageSelected({
                 backgroundColor: red[600],
               },
             }}
-            onClick={() => dispatch(clearSelectedImage())}
+            onClick={() => dispatch(clearSelectedImage({ id }))}
             data-testid={dataCy.CLEAR_BUTTON}
           >
             {labels.CLEAR_BUTTON}

@@ -1,30 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { getAllPictures } from "../api";
+import { RootState } from "./store";
+import { ImageState } from "../types";
 
-export interface ImageState {
-  id: number;
-  url: string;
-  selected: boolean;
-}
-
-async function fetchImages() {
-  const pictures = await getAllPictures().then((pictures) => {
-    return pictures.map((item) => ({
-      id: Number(item.id),
-      url: item.download_url,
-      selected: false,
-    }));
-  });
-  return pictures;
-}
+const initialState: ImageState[] = [];
 
 export const imageSlice = createSlice({
   name: "images",
-  initialState: await fetchImages(),
+  initialState,
   reducers: {
+    setAllImages: (state, action: PayloadAction<ImageState[]>) =>
+      (state = action.payload),
     addNewImage: (state, action: PayloadAction<string>) => {
-      const id = state[state.length - 1].id + 1;
+      let id = 0;
+      if (state) {
+        id = state[state.length - 1]?.id + 1;
+      }
+
       state.push({
         id,
         url: action.payload,
@@ -32,28 +24,38 @@ export const imageSlice = createSlice({
       });
     },
     selectImage: (state, action: PayloadAction<{ id: number }>) => {
-      const hasSelectedImage = state.some((item) => item.selected === true);
-      if (hasSelectedImage) {
-        state.forEach((_, index) => {
-          state[index].selected = false;
-        });
+      const indexBeforeImage = state.findIndex((item) => item.selected);
+      if (indexBeforeImage !== -1) {
+        state[indexBeforeImage].selected = false;
       }
-
       const indexSelectedImage = state.findIndex(
         (item) => item.id === action.payload.id
       );
       state[indexSelectedImage].selected = true;
     },
-    clearSelectedImage: (state) => {
-      state.forEach((_, index) => {
-        state[index].selected = false;
-      });
+    clearSelectedImage: (state, action: PayloadAction<{ id: number }>) => {
+      const indexSelectedImage = state.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (indexSelectedImage > 0) {
+        state[indexSelectedImage].selected = false;
+      }
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addNewImage, selectImage, clearSelectedImage } =
+export const { addNewImage, selectImage, clearSelectedImage, setAllImages } =
   imageSlice.actions;
+
+export const selectedImage = createSelector(
+  (state: RootState) => state.images,
+  (images) =>
+    images[images.findIndex((item) => item.selected)] ?? {
+      id: undefined,
+      url: undefined,
+      selected: false,
+    }
+);
 
 export default imageSlice.reducer;
