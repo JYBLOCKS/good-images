@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../redux/store";
 import { useEffect } from "react";
-import { useGetPicturesQuery } from "../api";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import { setAllImages } from "../redux/imageSlice";
+import { useGetPicturesQuery } from "../api";
 
 export default function useGetAllImages() {
   const dispatch = useDispatch();
-  const { data } = useGetPicturesQuery({ limit: 30 });
+  const { data, isLoading } = useGetPicturesQuery({ limit: 30 });
   useEffect(() => {
     if (data) {
       const result =
@@ -20,5 +20,5 @@ export default function useGetAllImages() {
     return () => {};
   }, [data]);
   const images = useSelector((state: RootState) => state.images);
-  return { images };
+  return { images, isLoading };
 }

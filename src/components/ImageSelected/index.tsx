@@ -1,49 +1,31 @@
-import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
-import { clearSelectedImage, selectedImage } from "../../redux/imageSlice";
+import { Stack, Typography } from "@mui/material";
+import { selectedImage } from "../../redux/imageSlice";
 import * as labels from "./labels";
-import * as dataCy from "./data-cy";
-import { grey, red } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 import "./ImageSelected.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { useState, useEffect } from "react";
+import { ImageView } from "./components/ImageView";
 
 export default function ImageSelected() {
-  const dispatch = useDispatch();
   const { url, id } = useSelector((state: RootState) => selectedImage(state));
-  const isMobile = !useMediaQuery("(min-width:600px)");
+
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (id !== undefined && url) {
+      setInterval(() => setLoading(false), 3000);
+    }
+    return () => {
+      setLoading(true);
+    };
+  }, [id, url]);
 
   return (
     <>
       {url && id !== undefined ? (
-        <Stack
-          spacing={2}
-          justifyContent={"center"}
-          alignItems={"center"}
-          width={"100%"}
-        >
-          <img
-            className="imageSelected"
-            src={url}
-            alt={`image-${id}`}
-            width={isMobile ? "70%" : 400}
-            height={isMobile ? 150 : 400}
-          />
-          <Button
-            variant="contained"
-            sx={{
-              width: { xs: "90%", md: "40%" },
-              height: 56,
-              backgroundColor: red[400],
-              ":hover": {
-                backgroundColor: red[600],
-              },
-            }}
-            onClick={() => dispatch(clearSelectedImage({ id }))}
-            data-testid={dataCy.CLEAR_BUTTON}
-          >
-            {labels.CLEAR_BUTTON}
-          </Button>
-        </Stack>
+        <ImageView url={url} id={id} loading={loading} />
       ) : (
         <Stack spacing={1}>
           <Typography variant="h6" textAlign={"center"} color={grey[800]}>
