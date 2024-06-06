@@ -37,8 +37,10 @@ const images: ImageState[] = [
   { id: 29, url: url(29), selected: false },
 ];
 
-vi.mock("../../hooks/useGetAllImages", () => ({
-  default: () => ({ images }),
+vi.mock("../../hooks", () => ({
+  useGetAllImages: () => ({ images }),
+  useDisableButtons: () => ({}),
+  useScrollDown: () => ({}),
 }));
 
 vi.mock("use-debounce", () => ({

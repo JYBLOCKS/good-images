@@ -1,8 +1,8 @@
 import { Button, Skeleton, Stack, useMediaQuery } from "@mui/material";
-import { selectImage } from "../../redux/imageSlice";
-import "./ImageButton.css";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { selectImage } from "../../redux/imageSlice";
+import { useLoading } from "../../hooks";
+import "./ImageButton.css";
 
 interface ImageButtonProps {
   id: number;
@@ -20,15 +20,7 @@ export default function ImageButton({
 }: Readonly<ImageButtonProps>) {
   const dispatch = useDispatch();
   const isMobile = !useMediaQuery("(min-width:600px)");
-
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (id !== undefined && url) {
-      setInterval(() => setLoading(false), 3000);
-    }
-    return () => {};
-  }, [id, url]);
+  const { loading } = useLoading(id, url);
 
   const onHandleSelectImage = () => {
     dispatch(selectImage({ id }));
@@ -41,7 +33,8 @@ export default function ImageButton({
       onClick={onHandleSelectImage}
       disabled={disableButtons}
       sx={{
-        filter: disableButtons && clickedButton !== id ? "grayscale(100%)" : "none",
+        filter:
+          disableButtons && clickedButton !== id ? "grayscale(100%)" : "none",
       }}
     >
       <img
