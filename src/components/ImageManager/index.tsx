@@ -14,7 +14,7 @@ export default function ImageManager() {
       width={"100%"}
       height={"100%"}
     >
-      <ImageSelected/>
+      <ImageSelected />
       <AddImageForm />
     </Stack>
   );

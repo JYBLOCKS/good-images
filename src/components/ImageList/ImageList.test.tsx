@@ -37,8 +37,8 @@ const images: ImageState[] = [
   { id: 29, url: url(29), selected: false },
 ];
 
-vi.mock("../../hooks/ImageHook", () => ({
-  default: () => ({images}),
+vi.mock("../../hooks/useGetAllImages", () => ({
+  default: () => ({ images }),
 }));
 
 vi.mock("use-debounce", () => ({
@@ -47,9 +47,7 @@ vi.mock("use-debounce", () => ({
 
 // Mock componente ImageButton
 vi.mock("../ImageButton", () => ({
-  default: vi.fn(() => (
-    <div role="img" />
-  )),
+  default: vi.fn(() => <div role="img" />),
 }));
 
 describe("ImageList", () => {
