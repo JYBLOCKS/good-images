@@ -51,7 +51,7 @@ export default function AddImageForm() {
         InputLabelProps={{ shrink: true }}
         variant="outlined"
         value={file}
-        sx={{ width: { xs: "90%", md: "40%" } }}
+        sx={{ width: { xs: "90%", md: "70%" } }}
         onChange={onChange}
       />
       {newImage.length > 0 && (

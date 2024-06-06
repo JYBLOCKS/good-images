@@ -7,8 +7,17 @@ import { useEffect, useState } from "react";
 interface ImageButtonProps {
   id: number;
   url: string;
+  clickedButton: number | null;
+  disableButtons: boolean;
+  handleButtonClick: Function;
 }
-export default function ImageButton({ id, url }: Readonly<ImageButtonProps>) {
+export default function ImageButton({
+  id,
+  url,
+  clickedButton,
+  disableButtons,
+  handleButtonClick,
+}: Readonly<ImageButtonProps>) {
   const dispatch = useDispatch();
   const isMobile = !useMediaQuery("(min-width:600px)");
 
@@ -23,10 +32,18 @@ export default function ImageButton({ id, url }: Readonly<ImageButtonProps>) {
 
   const onHandleSelectImage = () => {
     dispatch(selectImage({ id }));
+    handleButtonClick(id);
   };
 
   return !loading ? (
-    <Stack component={Button} onClick={onHandleSelectImage}>
+    <Stack
+      component={Button}
+      onClick={onHandleSelectImage}
+      disabled={disableButtons}
+      sx={{
+        filter: disableButtons && clickedButton !== id ? "grayscale(100%)" : "none",
+      }}
+    >
       <img
         className="imageButton"
         src={url}

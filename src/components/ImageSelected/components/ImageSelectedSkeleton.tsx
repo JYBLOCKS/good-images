@@ -1,6 +1,6 @@
 import { Skeleton, Stack, useMediaQuery } from "@mui/material";
 
-export const ImageSkeleton = () => {
+export const ImageSelectedSkeleton = () => {
   const isMobile = !useMediaQuery("(min-width:600px)");
   return (
     <Stack
@@ -13,7 +13,11 @@ export const ImageSkeleton = () => {
         variant="rounded"
         width={isMobile ? "70%" : 400}
         height={isMobile ? 150 : 400}
-        sx={{ margin: "auto" }}
+      />
+      <Skeleton
+        variant="rounded"
+        width={isMobile ? "70%" : "40%"}
+        height={56}
       />
     </Stack>
   );
