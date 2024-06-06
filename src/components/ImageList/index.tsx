@@ -1,11 +1,11 @@
 import { Stack } from "@mui/material";
-import ImageButton from "../ImageButton";
 import { grey } from "@mui/material/colors";
+import ImageButton from "../ImageButton";
 import useGetAllImages from "../../hooks/ImageHook";
 
 export default function ImageList() {
-  const {images} = useGetAllImages();
-  
+  const { images } = useGetAllImages();
+
   return (
     <Stack
       direction={"column"}
