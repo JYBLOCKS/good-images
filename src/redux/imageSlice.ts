@@ -37,7 +37,7 @@ export const imageSlice = createSlice({
       const indexSelectedImage = state.findIndex(
         (item) => item.id === action.payload.id
       );
-      if (indexSelectedImage > 0) {
+      if (indexSelectedImage > -1) {
         state[indexSelectedImage].selected = false;
       }
     },

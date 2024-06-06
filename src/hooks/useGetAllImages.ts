@@ -4,7 +4,7 @@ import { RootState } from "../redux/store";
 import { setAllImages } from "../redux/imageSlice";
 import { useGetPicturesQuery } from "../api";
 
-export default function useGetAllImages() {
+export function useGetAllImages() {
   const dispatch = useDispatch();
   const { data } = useGetPicturesQuery({ limit: 30 });
   useEffect(() => {

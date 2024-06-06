@@ -5,14 +5,16 @@ import { useDispatch } from "react-redux";
 import * as labels from "../labels";
 import * as dataCy from "../data-cy";
 import { ImageSelectedSkeleton } from "./ImageSelectedSkeleton";
+import { useLoading } from "../../../hooks";
 
 export const ImageSelectedView = ({
   url,
   id,
-  loading,
-}: Readonly<{ url: string; id: number; loading: boolean }>) => {
+}: Readonly<{ url: string; id: number }>) => {
   const dispatch = useDispatch();
   const isMobile = !useMediaQuery("(min-width:600px)");
+  const { loading } = useLoading(id, url);
+  
   return !loading ? (
     <Stack
       spacing={2}

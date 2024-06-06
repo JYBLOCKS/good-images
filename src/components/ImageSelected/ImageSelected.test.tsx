@@ -13,6 +13,12 @@ vi.mock("react-redux", () => ({
     .mockReturnValue((state: RootState) => selectedImage(state)),
 }));
 
+vi.mock("../../hooks", () => ({
+  useLoading: (_id: 0, _url: "https://picsum.photos/id/0/1000/1000") => ({
+    loading: true,
+  }),
+}));
+
 describe("SelectImage", () => {
   it("should display an image", () => {
     render(<SelectImage />);
