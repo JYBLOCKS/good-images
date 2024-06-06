@@ -6,7 +6,7 @@ import { useGetPicturesQuery } from "../api";
 
 export default function useGetAllImages() {
   const dispatch = useDispatch();
-  const { data, isLoading } = useGetPicturesQuery({ limit: 30 });
+  const { data } = useGetPicturesQuery({ limit: 30 });
   useEffect(() => {
     if (data) {
       const result =
@@ -19,6 +19,6 @@ export default function useGetAllImages() {
     }
     return () => {};
   }, [data]);
-  const images = useSelector((state: RootState) => state.images);
-  return { images, isLoading };
+  const images = useSelector((state: RootState) => state.images) ?? [];
+  return { images };
 }

@@ -6,7 +6,7 @@ import "./ImageSelected.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useState, useEffect } from "react";
-import { ImageView } from "./components/ImageView";
+import { ImageSelectedView } from "./components/ImageSelectedView";
 
 export default function ImageSelected() {
   const { url, id } = useSelector((state: RootState) => selectedImage(state));
@@ -25,7 +25,7 @@ export default function ImageSelected() {
   return (
     <>
       {url && id !== undefined ? (
-        <ImageView url={url} id={id} loading={loading} />
+        <ImageSelectedView url={url} id={id} loading={loading} />
       ) : (
         <Stack spacing={1}>
           <Typography variant="h6" textAlign={"center"} color={grey[800]}>

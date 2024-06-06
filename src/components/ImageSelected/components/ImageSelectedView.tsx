@@ -4,9 +4,9 @@ import { clearSelectedImage } from "../../../redux/imageSlice";
 import { useDispatch } from "react-redux";
 import * as labels from "../labels";
 import * as dataCy from "../data-cy";
-import { ImageSkeleton } from "./ImageSkeleton";
+import { ImageSelectedSkeleton } from "./ImageSelectedSkeleton";
 
-export const ImageView = ({
+export const ImageSelectedView = ({
   url,
   id,
   loading,
@@ -30,7 +30,7 @@ export const ImageView = ({
       <Button
         variant="contained"
         sx={{
-          width: { xs: "90%", md: "40%" },
+          width: { xs: "70%", md: "40%" },
           height: 56,
           backgroundColor: red[400],
           ":hover": {
@@ -44,6 +44,6 @@ export const ImageView = ({
       </Button>
     </Stack>
   ) : (
-    <ImageSkeleton />
+    <ImageSelectedSkeleton />
   );
 };

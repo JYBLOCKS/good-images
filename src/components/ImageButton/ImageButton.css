@@ -1,7 +1,3 @@
 .imageButton {
   border-radius: 10px;
 }
-
-.blur {
-  backdrop-filter: blur(50%);
-}
